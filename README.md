@@ -1,6 +1,8 @@
 <h1 align="center">Hey 👋, I'm Nabeel</h1>
 <h3 align="center">From Idea to Deployment — Full-Stack Solution</h3>
 
+- My portfolio - https://nabeel0170.github.io/nabeel0170/
+
 - 💬 Ask me about **React, Next.js, Node.js, TypeScript, React Native, Expo, AWS, SQL, and full-stack development**
 
 - 📫 How to reach me **mohamednabeel0170@gmail.com**
