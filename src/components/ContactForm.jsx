@@ -6,10 +6,6 @@ import { useSelector } from "react-redux";
 import { selectMode } from "../app/appSlice";
 // Components
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
-// Config
-import { formspreeUrl } from "../config";
-// Util
-import { postData } from "../utils";
 
 // #region styled-components
 const StyledForm = styled.div`
@@ -31,42 +27,110 @@ const ContactForm = () => {
   const [dangerMessage, setDangerMessage] = React.useState(null);
   const theme = useSelector(selectMode);
 
+  const sendEmail = async (templateParams) => {
+    // Create a well-formatted email
+    const subject = `Portfolio Contact from ${templateParams.name}`;
+    const body = `Hi Nabeel,
+
+I found your portfolio and would like to get in touch.
+
+Name: ${templateParams.name}
+Email: ${templateParams.email}
+
+Message:
+${templateParams.message}
+
+Best regards,
+${templateParams.name}`;
+
+    // Try multiple email service URLs
+    const emailUrls = [
+      // Gmail compose URL
+      `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=nabeelazar0170@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      // Outlook web compose URL
+      `https://outlook.live.com/mail/0/deeplink/compose?to=nabeelazar0170@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      // Yahoo mail compose URL
+      `https://compose.mail.yahoo.com/?to=nabeelazar0170@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    ];
+
+    // Try to open Gmail first
+    try {
+      const newWindow = window.open(emailUrls[0], '_blank', 'noopener,noreferrer');
+      
+      // Check if window opened successfully
+      if (newWindow && !newWindow.closed) {
+        // Success - Gmail opened
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({ ok: true });
+          }, 1000);
+        });
+      } else {
+        throw new Error('Popup blocked or failed to open');
+      }
+    } catch (error) {
+      // Fallback: Create a temporary link and click it
+      const tempLink = document.createElement('a');
+      tempLink.href = emailUrls[0];
+      tempLink.target = '_blank';
+      tempLink.rel = 'noopener noreferrer';
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+      
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ ok: true });
+        }, 1000);
+      });
+    }
+  };
+
   const handleSubmit = async (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
+    
     setSuccess(false);
     setDanger(false);
     setDangerMessage(null);
+    
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
+      setIsValidated(true);
+      return;
     }
+
     setIsValidated(true);
+    setIsProcessing(true);
+
     const { name, email, message } = form.elements;
-    const data = {
+    const templateParams = {
       name: name.value,
       email: email.value,
       message: message.value,
     };
-    if (form.checkValidity()) {
-      event.preventDefault();
-      event.persist();
-      setIsProcessing(true);
-      try {
-        const response = await postData(formspreeUrl, data);
-        if (!response.ok) {
-          throw new Error(`${response.status}: check formspreeUrl in data.js`);
-        }
-        setIsProcessing(false);
-        setIsValidated(false);
-        event.target.reset();
-        setSuccess(true);
-      } catch (error) {
-        setIsProcessing(false);
-        setIsValidated(false);
-        event.target.reset();
-        setDangerMessage(error.message);
-        setDanger(true);
-      }
+
+    try {
+      await sendEmail(templateParams);
+      setIsProcessing(false);
+      setIsValidated(false);
+      form.reset();
+      setSuccess(true);
+      
+      // Auto-dismiss success message after 5 seconds
+      setTimeout(() => {
+        setSuccess(false);
+      }, 5000);
+    } catch (error) {
+      setIsProcessing(false);
+      setIsValidated(false);
+      setDangerMessage('Failed to send email. Please try again.');
+      setDanger(true);
+      
+      // Auto-dismiss error message after 7 seconds
+      setTimeout(() => {
+        setDanger(false);
+      }, 7000);
     }
   };
 
@@ -99,41 +163,67 @@ const ContactForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mx-auto text-center form-group">
-          {formspreeUrl && (
-            <Button
-              size="lg"
-              variant={theme === "light" ? "outline-dark" : "outline-light"}
-              type="submit"
-              disabled={isProcessing}
-              className="my-4"
+          <Button
+            size="lg"
+            variant="primary"
+            type="submit"
+            disabled={isProcessing}
+            className="my-4"
+          >
+            {isProcessing ? (
+              <>
+                Sending... <Spinner animation="border" size="sm" className="ms-2" />
+              </>
+            ) : (
+              "Send Message"
+            )}
+          </Button>
+          
+          <div className="mt-3">
+            <p className="mb-2 text-muted">Or connect with me directly:</p>
+            <div className="d-flex justify-content-center gap-2 flex-wrap">
+              <a 
+                href="https://github.com/nabeel0170" 
+                className="btn btn-outline-secondary btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/nabeel-azar/" 
+                className="btn btn-outline-secondary btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          {success && (
+            <Alert
+              variant="success"
+              onClose={() => setSuccess(false)}
+              dismissible
+              className="mt-3"
             >
-              Submit{" "}
-              {isProcessing && (
-                <Spinner animation="border" variant="success" size="sm" />
-              )}
-            </Button>
+              <Alert.Heading>✅ Email Service Opened!</Alert.Heading>
+              <p className="mb-0">A new tab should have opened with Gmail (or your default email service) with your message ready. Just click send!</p>
+            </Alert>
           )}
-          <Alert
-            show={success}
-            variant="success"
-            onClose={() => setSuccess(false)}
-            dismissible
-          >
-            <Alert.Heading>Success! I will contact you soon.</Alert.Heading>
-          </Alert>
-          <Alert
-            show={danger}
-            variant="danger"
-            onClose={() => setDanger(false)}
-            dismissible
-          >
-            <Alert.Heading>{dangerMessage}</Alert.Heading>
-          </Alert>
-          <Alert show={!formspreeUrl} variant="danger">
-            <Alert.Heading>
-              You must provide a valid formspree url in src/config.js
-            </Alert.Heading>
-          </Alert>
+          
+          {danger && (
+            <Alert
+              variant="danger"
+              onClose={() => setDanger(false)}
+              dismissible
+              className="mt-3"
+            >
+              <Alert.Heading>❌ Error</Alert.Heading>
+              <p className="mb-0">{dangerMessage}</p>
+            </Alert>
+          )}
         </Form.Group>
       </Form>
     </StyledForm>

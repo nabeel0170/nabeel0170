@@ -1,9 +1,9 @@
-import React from "react"; 
-import styled from "styled-components"; 
-import PropTypes from "prop-types"; 
-import { Icon } from "@iconify/react"; 
-import GH from "../images/GH.svg"; 
-import { Card } from "react-bootstrap"; 
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import { Icon } from "@iconify/react";
+import GH from "../images/GH.svg";
+import { Card } from "react-bootstrap";
 
 const StyledCard = styled.div`
   .card {
@@ -11,28 +11,25 @@ const StyledCard = styled.div`
     border: none;
     border-radius: 1.5rem;
     padding: 0;
-    background: ${({ theme }) => 
-      theme.name === "light" 
-        ? "rgba(255, 255, 255, 0.9)" 
-        : "rgba(30, 30, 30, 0.9)"
-    };
+    background: ${({ theme }) =>
+      theme.name === "light"
+        ? "rgba(255, 255, 255, 0.9)"
+        : "rgba(30, 30, 30, 0.9)"};
     backdrop-filter: blur(20px);
-    box-shadow: ${({ theme }) => 
-      theme.name === "light" 
-        ? "0 8px 32px rgba(0, 0, 0, 0.1)" 
-        : "0 8px 32px rgba(0, 0, 0, 0.3)"
-    };
-    border: ${({ theme }) => 
-      theme.name === "light" 
-        ? "1px solid rgba(255, 255, 255, 0.2)" 
-        : "1px solid rgba(255, 255, 255, 0.1)"
-    };
+    box-shadow: ${({ theme }) =>
+      theme.name === "light"
+        ? "0 8px 32px rgba(0, 0, 0, 0.1)"
+        : "0 8px 32px rgba(0, 0, 0, 0.3)"};
+    border: ${({ theme }) =>
+      theme.name === "light"
+        ? "1px solid rgba(255, 255, 255, 0.2)"
+        : "1px solid rgba(255, 255, 255, 0.1)"};
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: -100%;
@@ -50,12 +47,11 @@ const StyledCard = styled.div`
 
     &:hover {
       transform: translateY(-8px) scale(1.02);
-      box-shadow: ${({ theme }) => 
-        theme.name === "light" 
-          ? "0 20px 40px rgba(0, 0, 0, 0.15)" 
-          : "0 20px 40px rgba(0, 0, 0, 0.4)"
-      };
-      
+      box-shadow: ${({ theme }) =>
+        theme.name === "light"
+          ? "0 20px 40px rgba(0, 0, 0, 0.15)"
+          : "0 20px 40px rgba(0, 0, 0, 0.4)"};
+
       &::before {
         left: 100%;
       }
@@ -66,9 +62,8 @@ const StyledCard = styled.div`
       object-fit: contain;
       padding: 2rem;
       transition: all 0.3s ease;
-      filter: ${({ theme }) => 
-        theme.name === "light" ? "none" : "brightness(0.9)"
-      };
+      filter: ${({ theme }) =>
+        theme.name === "light" ? "none" : "brightness(0.9)"};
       position: relative;
       z-index: 2;
 
@@ -81,24 +76,21 @@ const StyledCard = styled.div`
       padding: 1.5rem;
       position: relative;
       z-index: 2;
-      background: ${({ theme }) => 
-        theme.name === "light" 
-          ? "rgba(255, 255, 255, 0.1)" 
-          : "rgba(255, 255, 255, 0.05)"
-      };
+      background: ${({ theme }) =>
+        theme.name === "light"
+          ? "rgba(255, 255, 255, 0.1)"
+          : "rgba(255, 255, 255, 0.05)"};
 
       .card-title {
         font-size: 1.4rem;
         font-weight: 600;
         margin-bottom: 1rem;
-        color: ${({ theme }) => 
-          theme.name === "light" ? "var(--bs-dark)" : "var(--bs-light)"
-        };
-        background: ${({ theme }) => 
-          theme.name === "light" 
-            ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" 
-            : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-        };
+        color: ${({ theme }) =>
+          theme.name === "light" ? "var(--bs-dark)" : "var(--bs-light)"};
+        background: ${({ theme }) =>
+          theme.name === "light"
+            ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+            : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"};
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -108,11 +100,10 @@ const StyledCard = styled.div`
       .card-text {
         font-size: 0.95rem;
         line-height: 1.6;
-        color: ${({ theme }) => 
-          theme.name === "light" 
-            ? "rgba(0, 0, 0, 0.7)" 
-            : "rgba(255, 255, 255, 0.8)"
-        };
+        color: ${({ theme }) =>
+          theme.name === "light"
+            ? "rgba(0, 0, 0, 0.7)"
+            : "rgba(255, 255, 255, 0.8)"};
         text-align: center;
         margin-bottom: 0;
       }
@@ -121,11 +112,10 @@ const StyledCard = styled.div`
     .card-footer {
       border: none;
       border-radius: 0 0 1.5rem 1.5rem;
-      background: ${({ theme }) => 
-        theme.name === "light" 
-          ? "rgba(255, 255, 255, 0.8)" 
-          : "rgba(0, 0, 0, 0.3)"
-      };
+      background: ${({ theme }) =>
+        theme.name === "light"
+          ? "rgba(255, 255, 255, 0.8)"
+          : "rgba(0, 0, 0, 0.3)"};
       padding: 1.25rem;
       position: relative;
       z-index: 2;
@@ -139,18 +129,17 @@ const StyledCard = styled.div`
         font-weight: 500;
         padding: 0.75rem 1.5rem;
         border-radius: 2rem;
-        background: ${({ theme }) => 
-          theme.name === "light" 
-            ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" 
-            : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-        };
+        background: ${({ theme }) =>
+          theme.name === "light"
+            ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+            : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"};
         color: white;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
 
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: -100%;
@@ -237,8 +226,9 @@ const ProjectCard = ({ demo, description, image, name, url }) => {
         <Card.Body className="overflow-auto text-center">
           <Card.Title>{name}</Card.Title>
           <Card.Text>
-  {description || "A detailed project showcasing full-stack development skills and practical implementation."}
-</Card.Text>
+            {description ||
+              "A detailed project showcasing full-stack development skills and practical implementation."}
+          </Card.Text>
         </Card.Body>
         <Card.Footer className="text-center">
           <Card.Link href={url}>

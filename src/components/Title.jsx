@@ -17,7 +17,7 @@ const TitleDiv = styled.div`
     min-width: 3rem;
     border-radius: 0.25rem;
     margin: 0 auto 0 auto;
-    background:  var(--gradient-accent)
+    background: var(--gradient-accent);
   }
 `;
 // #endregion

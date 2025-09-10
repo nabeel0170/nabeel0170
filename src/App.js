@@ -23,6 +23,8 @@ import AppFallback from "./components/AppFallback";
 import GlobalStyles from "./components/GlobalStyles";
 import ScrollToTop from "./components/ScrollToTop";
 import Loading from "./components/Loading";
+import ParticleBackground from "./components/ParticleBackground";
+import ScrollProgress from "./components/ScrollProgress";
 import { Element } from "react-scroll";
 import { Container } from "react-bootstrap";
 import NavBar from "./components/NavBar";
@@ -39,7 +41,7 @@ const propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       image: PropTypes.node.isRequired,
-    })
+    }),
   ),
 };
 
@@ -95,7 +97,7 @@ const App = ({ projectCardImages = [], filteredProjects = [] }) => {
         filteredProjects.length !== 0
       ) {
         const tempArray = projects.filter((obj) =>
-          filteredProjects.includes(obj.name)
+          filteredProjects.includes(obj.name),
         );
         tempArray.length !== 0
           ? dispatch(setMainProjects([...tempArray]))
@@ -117,7 +119,7 @@ const App = ({ projectCardImages = [], filteredProjects = [] }) => {
         setTheme(getPreferredTheme());
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   React.useEffect(() => {
@@ -169,8 +171,12 @@ const App = ({ projectCardImages = [], filteredProjects = [] }) => {
     <ErrorBoundary FallbackComponent={AppFallback}>
       {/* https://reactrouter.com/6.28.0/upgrading/future#v7_starttransition */}
       {/* https://reactrouter.com/6.28.0/upgrading/future#v7_relativesplatpath */}
-      <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true, }}>
+      <HashRouter
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
         <ThemeProvider theme={{ name: theme }}>
+          <ScrollProgress />
+          <ParticleBackground />
           <ScrollToTop />
           <GlobalStyles />
           {content}

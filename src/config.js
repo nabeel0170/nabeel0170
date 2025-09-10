@@ -112,8 +112,77 @@ export const skillData = [
     skill: <Icon icon="mdi:aws" className="display-4" />,
     name: "AWS",
   },
+  {
+    id: 15,
+    skill: <Icon icon="simple-icons:reactquery" className="display-4" />,
+    name: "React Query",
+  },
+  {
+    id: 16,
+    skill: <Icon icon="file-icons:typescript" className="display-4" />,
+    name: "TypeScript",
+  },
+  {
+    id: 17,
+    skill: <Icon icon="mdi:language-python" className="display-4" />,
+    name: "Python",
+  },
+  {
+    id: 18,
+    skill: <Icon icon="mdi:language-php" className="display-4" />,
+    name: "PHP",
+  },
+  {
+    id: 19,
+    skill: <Icon icon="simple-icons:mongodb" className="display-4" />,
+    name: "MongoDB",
+  },
+  {
+    id: 20,
+    skill: <Icon icon="simple-icons:jest" className="display-4" />,
+    name: "Jest",
+  },
+  {
+    id: 21,
+    skill: <Icon icon="simple-icons:cypress" className="display-4" />,
+    name: "Cypress",
+  },
+  {
+    id: 22,
+    skill: <Icon icon="simple-icons:electron" className="display-4" />,
+    name: "Electron",
+  },
+  {
+    id: 23,
+    skill: <Icon icon="simple-icons:docker" className="display-4" />,
+    name: "Docker",
+  },
+  {
+    id: 24,
+    skill: <Icon icon="simple-icons:babel" className="display-4" />,
+    name: "Babel",
+  },
+  {
+    id: 25,
+    skill: <Icon icon="simple-icons:tensorflow" className="display-4" />,
+    name: "TensorFlow",
+  },
+  {
+    id: 26,
+    skill: <Icon icon="simple-icons:pytorch" className="display-4" />,
+    name: "PyTorch",
+  },
+  {
+    id: 27,
+    skill: <Icon icon="simple-icons:scikitlearn" className="display-4" />,
+    name: "Scikit-Learn",
+  },
+  {
+    id: 28,
+    skill: <Icon icon="simple-icons:express" className="display-4" />,
+    name: "Express.js",
+  },
 ];
-
 
 // Resume link (string - "https://YourResumeUrl") - I am using CloudFront to share my resume (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 export const resume = null;
@@ -137,6 +206,8 @@ export const projectCardImages = [
   Add your formspree endpoint below.
   https://formspree.io/
 */
+// Replace "YourEndpoint" with your actual Formspree form ID
+// Get your endpoint from https://formspree.io/ after creating a free account
 export const formspreeUrl = "https://formspree.io/f/YourEndpoint";
 
 // Footer icons theme (light or dark)

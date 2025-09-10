@@ -23,8 +23,10 @@ const SocialLinks = () => {
 
   React.useEffect(() => {
     if (error) {
-      console.log(
-        `${error.status} - check getSocials query in src/app/apiSlice.js`
+      // Error handling - could be replaced with proper error reporting
+      // eslint-disable-next-line no-console
+      console.error(
+        `${error.status} - check getSocials query in src/app/apiSlice.js`,
       );
     }
   }, [error, socialsData]);
@@ -37,6 +39,15 @@ const SocialLinks = () => {
         className="link-icons"
       >
         <Icon icon="icomoon-free:github" />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/nabeel-azar/"
+        aria-label="Connect with me on LinkedIn."
+        className="link-icons"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon icon="fa-brands:linkedin" />
       </a>
       {isSuccess &&
         socialsData.map((element, index) => {

@@ -70,7 +70,7 @@ const AllProjects = () => {
             onClick={() => setActivePage(number)}
           >
             {number}
-          </Pagination.Item>
+          </Pagination.Item>,
         );
         setPageItems([...tempPageItems]);
       }
@@ -78,7 +78,7 @@ const AllProjects = () => {
         setFilteredResults(filteredData.slice(0, 6));
       } else {
         setFilteredResults(
-          filteredData.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6)
+          filteredData.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6),
         );
       }
     } else {
@@ -91,7 +91,7 @@ const AllProjects = () => {
             onClick={() => setActivePage(number)}
           >
             {number}
-          </Pagination.Item>
+          </Pagination.Item>,
         );
         setPageItems([...tempPageItems]);
       }
@@ -99,7 +99,7 @@ const AllProjects = () => {
         setFilteredResults(data.slice(0, 6));
       } else {
         setFilteredResults(
-          data.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6)
+          data.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6),
         );
       }
     }

@@ -14,6 +14,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import Loading from "./Loading";
 import Title from "./Title";
 import ProjectCard from "./ProjectCard";
+import AnimatedSection from "./AnimatedSection";
 
 // #region component
 const Projects = () => {
@@ -40,32 +41,36 @@ const Projects = () => {
         {mainProjects.length !== 0 && (
           <>
             <Row xs={1} md={2} lg={3} className="g-4 justify-content-center">
-              {projects.slice(0, 6).map((element) => {
+              {projects.slice(0, 6).map((element, index) => {
                 return (
                   <Col key={element.id}>
-                    <ProjectCard
-                      image={element.image}
-                      name={element.name}
-                      description={element.description}
-                      url={element.html_url}
-                    />
+                    <AnimatedSection delay={index * 0.06}>
+                      <ProjectCard
+                        image={element.image}
+                        name={element.name}
+                        description={element.description}
+                        url={element.html_url}
+                      />
+                    </AnimatedSection>
                   </Col>
                 );
               })}
             </Row>
             {projects.length > 3 && (
-              <Container className="text-center mt-5">
-                <Link to="/All-Projects">
-                  <Button
-                    size="lg"
-                    variant={
-                      theme === "light" ? "outline-dark" : "outline-light"
-                    }
-                  >
-                    All <Icon icon="icomoon-free:github" /> Projects
-                  </Button>
-                </Link>
-              </Container>
+              <AnimatedSection delay={0.6}>
+                <Container className="text-center mt-5">
+                  <Link to="/All-Projects">
+                    <Button
+                      size="lg"
+                      variant={
+                        theme === "light" ? "outline-primary" : "outline-light"
+                      }
+                    >
+                      All <Icon icon="icomoon-free:github" /> Projects
+                    </Button>
+                  </Link>
+                </Container>
+              </AnimatedSection>
             )}
           </>
         )}
@@ -83,9 +88,11 @@ const Projects = () => {
     <Element name={"Projects"} id="projects">
       <section className="section">
         <Container>
-          <Container className="d-flex justify-content-center">
-            <Title size={"h2"} text={"Projects"} />
-          </Container>
+          <AnimatedSection>
+            <Container className="d-flex justify-content-center">
+              <Title size={"h2"} text={"Projects"} />
+            </Container>
+          </AnimatedSection>
           {content}
         </Container>
       </section>
