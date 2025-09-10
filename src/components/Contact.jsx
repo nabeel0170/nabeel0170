@@ -6,6 +6,7 @@ import { Element } from "react-scroll";
 import Title from "./Title";
 import { Container } from "react-bootstrap";
 import ContactForm from "./ContactForm";
+import AnimatedSection from "./AnimatedSection";
 
 // #region styled-components
 const StyledSection = styled.section`
@@ -18,12 +19,16 @@ const Contact = () => {
   return (
     <Element name={"Contact"} id="contact">
       <StyledSection className="d-flex flex-column justify-content-center">
-        <Container className="d-flex justify-content-center">
-          <Title size={"h2"} text={"Contact"} />
-        </Container>
-        <Container>
-          <ContactForm />
-        </Container>
+        <AnimatedSection>
+          <Container className="d-flex justify-content-center">
+            <Title size={"h2"} text={"Contact"} />
+          </Container>
+        </AnimatedSection>
+        <AnimatedSection delay={0.2}>
+          <Container>
+            <ContactForm />
+          </Container>
+        </AnimatedSection>
       </StyledSection>
     </Element>
   );

@@ -24,7 +24,7 @@ const Home = () => {
   const bio = `I love breaking stuff… and then figuring out how to fix it better. 
   I’m a full-stack developer, building apps for both web and mobile. 
   When I’m not coding, I’m probably optimizing my life, experimenting, or enjoying a good cup of coffee.`;
-  
+
   return (
     <>
       <Hero name="Nabeel Azar" />

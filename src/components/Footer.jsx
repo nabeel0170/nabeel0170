@@ -10,7 +10,6 @@ import SocialLinks from "./SocialLinks";
 const StyledFooter = styled.footer`
   height: calc(var(--nav-height) + 1rem);
 
-
   a {
     color: ${({ $mode }) => {
       if ($mode !== undefined && $mode !== null) {
