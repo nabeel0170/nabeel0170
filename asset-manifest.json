@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/nabeel0170/static/css/main.f3612727.css",
+    "main.js": "/nabeel0170/static/js/main.43b15b8d.js",
+    "static/media/hero-dark.jpg": "/nabeel0170/static/media/hero-dark.37f2556d620821979e99.jpg",
+    "static/media/hero-light.jpg": "/nabeel0170/static/media/hero-light.78b77836d8aee4d7d3cb.jpg",
+    "static/media/developer-static.png": "/nabeel0170/static/media/developer-static.4ec3a888a94b1d8e742a.png",
+    "service-worker.js": "/nabeel0170/service-worker.js",
+    "static/media/GH.svg": "/nabeel0170/static/media/GH.b9e9a9aa6f05e9dfe5dcb8991bda3e4d.svg",
+    "static/media/defaultNavLogo.svg": "/nabeel0170/static/media/defaultNavLogo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/logo.svg": "/nabeel0170/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/nabeel0170/index.html",
+    "main.f3612727.css.map": "/nabeel0170/static/css/main.f3612727.css.map",
+    "main.43b15b8d.js.map": "/nabeel0170/static/js/main.43b15b8d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f3612727.css",
+    "static/js/main.43b15b8d.js"
+  ]
+}
