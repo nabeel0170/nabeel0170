@@ -63,12 +63,14 @@ const Projects = () => {
                     <Button
                       size="lg"
                       variant="outline-primary"
-                      className="d-inline-flex align-items-center gap-2"
+                      className="d-inline-flex align-items-center justify-content-center gap-2"
                       style={{
                         borderColor: theme === "light" ? "#667eea" : "#f093fb",
                         color: theme === "light" ? "#667eea" : "#f093fb",
                         backgroundColor: "transparent",
                         transition: "all 0.3s ease",
+                        minWidth: "200px",
+                        textAlign: "center"
                       }}
                       onMouseEnter={(e) => {
                         e.target.style.backgroundColor =
