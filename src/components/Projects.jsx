@@ -59,14 +59,34 @@ const Projects = () => {
             {projects.length > 3 && (
               <AnimatedSection delay={0.6}>
                 <Container className="text-center mt-5">
-                  <Link to="/All-Projects">
+                  <Link to="/All-Projects" style={{ textDecoration: "none" }}>
                     <Button
                       size="lg"
-                      variant={
-                        theme === "light" ? "outline-primary" : "outline-light"
-                      }
+                      variant="outline-primary"
+                      className="d-inline-flex align-items-center gap-2"
+                      style={{
+                        borderColor: theme === "light" ? "#667eea" : "#f093fb",
+                        color: theme === "light" ? "#667eea" : "#f093fb",
+                        backgroundColor: "transparent",
+                        transition: "all 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor =
+                          theme === "light" ? "#667eea" : "#f093fb";
+                        e.target.style.color = "white";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "transparent";
+                        e.target.style.color =
+                          theme === "light" ? "#667eea" : "#f093fb";
+                      }}
                     >
-                      All <Icon icon="icomoon-free:github" /> Projects
+                      All{" "}
+                      <Icon
+                        icon="icomoon-free:github"
+                        style={{ fontSize: "1.2em" }}
+                      />{" "}
+                      Projects
                     </Button>
                   </Link>
                 </Container>

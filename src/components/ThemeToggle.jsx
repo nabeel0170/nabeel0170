@@ -1,4 +1,3 @@
-
 // Styles
 import styled, { keyframes } from "styled-components";
 // State

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 // State
 import { useSelector } from "react-redux";
@@ -23,8 +23,9 @@ const navLinks = {
     { id: "1T", name: "Home", to: "Home" },
     { id: "2T", name: "About Me", to: "About" },
     { id: "3T", name: "Skills", to: "Skills" },
-    { id: "4T", name: "Projects", to: "Projects" },
-    { id: "5T", name: "Contact", to: "Contact" },
+    { id: "4T", name: "Gallery", to: "Gallery" },
+    { id: "5T", name: "Projects", to: "Projects" },
+    { id: "6T", name: "Contact", to: "Contact" },
   ],
 };
 // #endregion
@@ -95,16 +96,17 @@ const StyledDiv = styled.div`
           ? "rgba(255, 255, 255, 0.9)"
           : "rgba(30, 30, 30, 0.9)"};
       backdrop-filter: blur(10px);
-      border: 2px solid ${({ theme }) =>
-        theme.name === "light"
-          ? "rgba(102, 126, 234, 0.2)"
-          : "rgba(240, 147, 251, 0.2)"};
+      border: 2px solid
+        ${({ theme }) =>
+          theme.name === "light"
+            ? "rgba(102, 126, 234, 0.2)"
+            : "rgba(240, 147, 251, 0.2)"};
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -100%;
@@ -120,18 +122,20 @@ const StyledDiv = styled.div`
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px ${({ theme }) =>
-          theme.name === "light"
-            ? "rgba(102, 126, 234, 0.3)"
-            : "rgba(240, 147, 251, 0.3)"};
+        box-shadow: 0 0 0 3px
+          ${({ theme }) =>
+            theme.name === "light"
+              ? "rgba(102, 126, 234, 0.3)"
+              : "rgba(240, 147, 251, 0.3)"};
       }
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px ${({ theme }) =>
-          theme.name === "light"
-            ? "rgba(102, 126, 234, 0.2)"
-            : "rgba(240, 147, 251, 0.2)"};
+        box-shadow: 0 8px 25px
+          ${({ theme }) =>
+            theme.name === "light"
+              ? "rgba(102, 126, 234, 0.2)"
+              : "rgba(240, 147, 251, 0.2)"};
         border-color: ${({ theme }) =>
           theme.name === "light" ? "#667eea" : "#f093fb"};
 
@@ -149,12 +153,12 @@ const StyledDiv = styled.div`
           &:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
           }
-          
+
           &:nth-child(2) {
             opacity: 0;
             transform: translateX(-20px);
           }
-          
+
           &:nth-child(3) {
             transform: translateY(-7px) rotate(-45deg);
           }
@@ -331,6 +335,7 @@ const NavBar = ({ callBack, closeDelay = 125 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { pathname } = useLocation();
   const { data: userData } = useGetUsersQuery();
+  const navbarRef = useRef(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -342,6 +347,31 @@ const NavBar = ({ callBack, closeDelay = 125 }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle click outside to close mobile menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target) &&
+        isExpanded
+      ) {
+        setisExpanded(false);
+      }
+    };
+
+    // Add event listener when menu is expanded
+    if (isExpanded) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    // Cleanup event listeners
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isExpanded]);
+
   return (
     <StyledDiv theme={{ name: theme }} $isScrolled={isScrolled}>
       <div className="spacer" />
@@ -351,9 +381,10 @@ const NavBar = ({ callBack, closeDelay = 125 }) => {
         expand="xl"
         expanded={isExpanded}
         fixed="top"
+        ref={navbarRef}
       >
         <Container>
-          <Navbar.Brand 
+          <Navbar.Brand
             href={userData?.html_url || "https://github.com"}
             target="_blank"
             rel="noopener noreferrer"
