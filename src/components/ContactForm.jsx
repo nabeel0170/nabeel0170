@@ -50,13 +50,17 @@ ${templateParams.name}`;
       // Outlook web compose URL
       `https://outlook.live.com/mail/0/deeplink/compose?to=nabeelazar0170@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
       // Yahoo mail compose URL
-      `https://compose.mail.yahoo.com/?to=nabeelazar0170@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      `https://compose.mail.yahoo.com/?to=nabeelazar0170@gmail.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
     ];
 
     // Try to open Gmail first
     try {
-      const newWindow = window.open(emailUrls[0], '_blank', 'noopener,noreferrer');
-      
+      const newWindow = window.open(
+        emailUrls[0],
+        "_blank",
+        "noopener,noreferrer",
+      );
+
       // Check if window opened successfully
       if (newWindow && !newWindow.closed) {
         // Success - Gmail opened
@@ -66,18 +70,18 @@ ${templateParams.name}`;
           }, 1000);
         });
       } else {
-        throw new Error('Popup blocked or failed to open');
+        throw new Error("Popup blocked or failed to open");
       }
     } catch (error) {
       // Fallback: Create a temporary link and click it
-      const tempLink = document.createElement('a');
+      const tempLink = document.createElement("a");
       tempLink.href = emailUrls[0];
-      tempLink.target = '_blank';
-      tempLink.rel = 'noopener noreferrer';
+      tempLink.target = "_blank";
+      tempLink.rel = "noopener noreferrer";
       document.body.appendChild(tempLink);
       tempLink.click();
       document.body.removeChild(tempLink);
-      
+
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve({ ok: true });
@@ -89,11 +93,11 @@ ${templateParams.name}`;
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    
+
     setSuccess(false);
     setDanger(false);
     setDangerMessage(null);
-    
+
     if (form.checkValidity() === false) {
       event.stopPropagation();
       setIsValidated(true);
@@ -116,7 +120,7 @@ ${templateParams.name}`;
       setIsValidated(false);
       form.reset();
       setSuccess(true);
-      
+
       // Auto-dismiss success message after 5 seconds
       setTimeout(() => {
         setSuccess(false);
@@ -124,9 +128,9 @@ ${templateParams.name}`;
     } catch (error) {
       setIsProcessing(false);
       setIsValidated(false);
-      setDangerMessage('Failed to send email. Please try again.');
+      setDangerMessage("Failed to send email. Please try again.");
       setDanger(true);
-      
+
       // Auto-dismiss error message after 7 seconds
       setTimeout(() => {
         setDanger(false);
@@ -172,26 +176,27 @@ ${templateParams.name}`;
           >
             {isProcessing ? (
               <>
-                Sending... <Spinner animation="border" size="sm" className="ms-2" />
+                Sending...{" "}
+                <Spinner animation="border" size="sm" className="ms-2" />
               </>
             ) : (
               "Send Message"
             )}
           </Button>
-          
+
           <div className="mt-3">
             <p className="mb-2 text-muted">Or connect with me directly:</p>
             <div className="d-flex justify-content-center gap-2 flex-wrap">
-              <a 
-                href="https://github.com/nabeel0170" 
+              <a
+                href="https://github.com/nabeel0170"
                 className="btn btn-outline-secondary btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 GitHub
               </a>
-              <a 
-                href="https://www.linkedin.com/in/nabeel-azar/" 
+              <a
+                href="https://www.linkedin.com/in/nabeel-azar/"
                 className="btn btn-outline-secondary btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -209,10 +214,13 @@ ${templateParams.name}`;
               className="mt-3"
             >
               <Alert.Heading>✅ Email Service Opened!</Alert.Heading>
-              <p className="mb-0">A new tab should have opened with Gmail (or your default email service) with your message ready. Just click send!</p>
+              <p className="mb-0">
+                A new tab should have opened with Gmail (or your default email
+                service) with your message ready. Just click send!
+              </p>
             </Alert>
           )}
-          
+
           {danger && (
             <Alert
               variant="danger"
