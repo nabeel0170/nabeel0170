@@ -163,19 +163,35 @@ a:hover {
 }
 
 .page-item.active .page-link {
-  background: var(--gradient-primary);
-  border: none;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  background: ${({ theme }) =>
+    theme.name === "light"
+      ? "var(--gradient-primary)"
+      : "var(--gradient-secondary)"} !important;
+  border: none !important;
+  box-shadow: ${({ theme }) =>
+    theme.name === "light"
+      ? "0 4px 15px rgba(102, 126, 234, 0.3)"
+      : "0 4px 15px rgba(240, 147, 251, 0.3)"};
+  color: white !important;
 }
 
 .page-link {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: ${({ theme }) =>
+    theme.name === "light" ? "#667eea" : "#f093fb"} !important;
   
-  &:hover {
-    background: var(--glassmorphism-light);
+  &:hover, &:focus {
+    background: ${({ theme }) =>
+      theme.name === "light"
+        ? "var(--glassmorphism-light)"
+        : "var(--glassmorphism-dark)"} !important;
     backdrop-filter: blur(10px);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: ${({ theme }) =>
+      theme.name === "light" ? "#667eea" : "#f093fb"} !important;
+    border-color: ${({ theme }) =>
+      theme.name === "light" ? "#667eea" : "#f093fb"} !important;
   }
 }
 
@@ -205,7 +221,10 @@ a:hover {
 
 /* Modern Button Styling */
 .btn-primary {
-  background: var(--gradient-primary);
+  background: ${({ theme }) =>
+    theme.name === "light"
+      ? "var(--gradient-primary)"
+      : "var(--gradient-secondary)"} !important;
   border: none;
   border-radius: 2rem;
   padding: 0.6rem 1.5rem;
@@ -214,6 +233,7 @@ a:hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  color: white !important;
   
   &::before {
     content: '';
@@ -231,9 +251,17 @@ a:hover {
     transition: left 0.5s;
   }
   
-  &:hover {
+  &:hover, &:focus, &:active {
+    background: ${({ theme }) =>
+      theme.name === "light"
+        ? "var(--gradient-primary)"
+        : "var(--gradient-secondary)"} !important;
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: ${({ theme }) =>
+      theme.name === "light"
+        ? "0 6px 20px rgba(102, 126, 234, 0.3)"
+        : "0 6px 20px rgba(240, 147, 251, 0.3)"};
+    color: white !important;
     
     &::before {
       left: 100%;
@@ -244,35 +272,53 @@ a:hover {
     padding: 0.75rem 2rem;
     font-size: 1rem;
     
-    &:hover {
+    &:hover, &:focus, &:active {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      box-shadow: ${({ theme }) =>
+        theme.name === "light"
+          ? "0 8px 25px rgba(102, 126, 234, 0.3)"
+          : "0 8px 25px rgba(240, 147, 251, 0.3)"};
     }
   }
 }
 
 .btn-outline-primary {
-  border: 2px solid var(--bs-primary);
+  border: 2px solid ${({ theme }) =>
+    theme.name === "light" ? "#667eea" : "#f093fb"} !important;
   border-radius: 2rem;
   padding: 0.6rem 1.5rem;
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
+  background: transparent !important;
+  color: ${({ theme }) =>
+    theme.name === "light" ? "#667eea" : "#f093fb"} !important;
   
-  &:hover {
-    background: var(--gradient-primary);
+  &:hover, &:focus, &:active {
+    background: ${({ theme }) =>
+      theme.name === "light"
+        ? "var(--gradient-primary)"
+        : "var(--gradient-secondary)"} !important;
+    border-color: ${({ theme }) =>
+      theme.name === "light" ? "#667eea" : "#f093fb"} !important;
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: ${({ theme }) =>
+      theme.name === "light"
+        ? "0 6px 20px rgba(102, 126, 234, 0.3)"
+        : "0 6px 20px rgba(240, 147, 251, 0.3)"};
+    color: white !important;
   }
   
   @media (min-width: 576px) {
     padding: 0.75rem 2rem;
     font-size: 1rem;
     
-    &:hover {
+    &:hover, &:focus, &:active {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      box-shadow: ${({ theme }) =>
+        theme.name === "light"
+          ? "0 8px 25px rgba(102, 126, 234, 0.3)"
+          : "0 8px 25px rgba(240, 147, 251, 0.3)"};
     }
   }
 }

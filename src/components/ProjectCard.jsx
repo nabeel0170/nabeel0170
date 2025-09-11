@@ -124,7 +124,7 @@ const StyledCard = styled.div`
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        text-decoration: none;
+        text-decoration: none !important;
         font-size: 1rem;
         font-weight: 500;
         padding: 0.75rem 1.5rem;
@@ -132,11 +132,12 @@ const StyledCard = styled.div`
         background: ${({ theme }) =>
           theme.name === "light"
             ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-            : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"};
-        color: white;
+            : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"} !important;
+        color: white !important;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        border: none;
 
         &::before {
           content: "";
@@ -155,14 +156,27 @@ const StyledCard = styled.div`
         }
 
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-          color: white;
-          text-decoration: none;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+          color: white !important;
+          text-decoration: none !important;
+          background: ${({ theme }) =>
+            theme.name === "light"
+              ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+              : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"} !important;
 
           &::before {
             left: 100%;
           }
+        }
+
+        &:focus, &:active, &:visited {
+          color: white !important;
+          text-decoration: none !important;
+          background: ${({ theme }) =>
+            theme.name === "light"
+              ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+              : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"} !important;
         }
 
         svg {
@@ -199,6 +213,19 @@ const StyledCard = styled.div`
         .card-link {
           padding: 0.65rem 1.25rem;
           font-size: 0.9rem;
+          background: ${({ theme }) =>
+            theme.name === "light"
+              ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+              : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"} !important;
+          color: white !important;
+          
+          &:hover, &:focus, &:active {
+            background: ${({ theme }) =>
+              theme.name === "light"
+                ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                : "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"} !important;
+            color: white !important;
+          }
         }
       }
     }

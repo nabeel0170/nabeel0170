@@ -147,13 +147,25 @@ const Skills = () => {
           </Row>
           {resume && (
             <AnimatedSection delay={0.5}>
-              <a href={resume}>
+              <a href={resume} style={{ textDecoration: "none" }}>
                 <Button
                   size="lg"
-                  variant={
-                    theme === "light" ? "outline-primary" : "outline-light"
-                  }
+                  variant="outline-primary"
                   className="mt-5"
+                  style={{
+                    borderColor: theme === "light" ? "#667eea" : "#f093fb",
+                    color: theme === "light" ? "#667eea" : "#f093fb",
+                    backgroundColor: "transparent",
+                    transition: "all 0.3s ease"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = theme === "light" ? "#667eea" : "#f093fb";
+                    e.target.style.color = "white";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "transparent";
+                    e.target.style.color = theme === "light" ? "#667eea" : "#f093fb";
+                  }}
                 >
                   R&eacute;sum&eacute;
                 </Button>

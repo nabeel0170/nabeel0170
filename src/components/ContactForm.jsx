@@ -189,17 +189,45 @@ ${templateParams.name}`;
             <div className="d-flex justify-content-center gap-2 flex-wrap">
               <a
                 href="https://github.com/nabeel0170"
-                className="btn btn-outline-secondary btn-sm"
+                className="btn btn-outline-primary btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{
+                  borderColor: theme === "light" ? "#667eea" : "#f093fb",
+                  color: theme === "light" ? "#667eea" : "#f093fb",
+                  backgroundColor: "transparent",
+                  transition: "all 0.3s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = theme === "light" ? "#667eea" : "#f093fb";
+                  e.target.style.color = "white";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = "transparent";
+                  e.target.style.color = theme === "light" ? "#667eea" : "#f093fb";
+                }}
               >
                 GitHub
               </a>
               <a
                 href="https://www.linkedin.com/in/nabeel-azar/"
-                className="btn btn-outline-secondary btn-sm"
+                className="btn btn-outline-primary btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{
+                  borderColor: theme === "light" ? "#667eea" : "#f093fb",
+                  color: theme === "light" ? "#667eea" : "#f093fb",
+                  backgroundColor: "transparent",
+                  transition: "all 0.3s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = theme === "light" ? "#667eea" : "#f093fb";
+                  e.target.style.color = "white";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = "transparent";
+                  e.target.style.color = theme === "light" ? "#667eea" : "#f093fb";
+                }}
               >
                 LinkedIn
               </a>
